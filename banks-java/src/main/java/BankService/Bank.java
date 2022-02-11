@@ -18,12 +18,13 @@ public class Bank {
         Id = id;
         Accounts = new ArrayList<AccountReference>();
         Transactions = new ArrayList<BankTransactions>();
+        BankInfo = bankinfo;
     }
 
     public int Id;
     public ArrayList<AccountReference> Accounts;
     public ArrayList<BankTransactions> Transactions;
-    public BankInformation BankInfo;
+    private BankInformation BankInfo;
 
     public void setId(int id) {
         Id = id;
@@ -121,7 +122,7 @@ public class Bank {
         int ans = -1;
         while (t < Accounts.size())
         {
-            if ((Accounts.get(t).Id) == id)
+            if (Integer.parseInt(Accounts.get(t).ClientId) == id)
             {
                 ans = t;
                 break;
@@ -140,7 +141,7 @@ public class Bank {
         int ans = -1;
         while (t < users.size())
         {
-            if (Integer.toString(users.get(t).getUId()) == id)
+            if (users.get(t).getUId() == Integer.parseInt(id))
             {
                 ans = t;
                 break;

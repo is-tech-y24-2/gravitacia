@@ -41,9 +41,9 @@ public class UserBuilder implements IUserBuilder{
 
     @Override
     public User GetUser() {
-        var rnd = new Random();
+        Random rnd = new Random();
         User result = this._user;
-        this._user.setUId(rnd.nextInt());
+        this._user.setUId(rnd.nextInt(40));
         this.Reset();
         return result;
     }

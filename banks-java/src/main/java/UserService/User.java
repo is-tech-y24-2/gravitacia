@@ -53,7 +53,7 @@ public class User {
 
     public boolean Istrustful()
     {
-        if (Address.isEmpty() || Passport.isEmpty())
+        if (Address == null || Passport == null)
             return false;
         else
             return true;
