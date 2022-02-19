@@ -18,7 +18,7 @@ public class UTests {
 
     @Test
     public void AddUsersMakeMoney() throws Exception {
-        ArrayList<User> users = new ArrayList<User>();
+        ArrayList<User> users = new ArrayList<>();
         UserBuilder userBuilder = new UserBuilderImpl();
         BankInfoBuilder bankInfoBuilder = new BankInfoBuilderImpl();
 

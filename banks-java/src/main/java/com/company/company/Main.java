@@ -76,7 +76,6 @@ public class Main {
             System.out.println("6. Show clients");
             System.out.println("7. Show accounts");
             System.out.println("8. Show transactions");
-            System.out.println("9. Drink some beer");
             System.out.println("0. Close");
             String key = System.in.toString();
 
@@ -206,7 +205,7 @@ public class Main {
                 ShowTransactions(bank.Transactions);
             }
 
-            System.out.println("Type any cifru");
+            System.out.println("Type anything");
             ans = System.in.toString();
         }
     }
