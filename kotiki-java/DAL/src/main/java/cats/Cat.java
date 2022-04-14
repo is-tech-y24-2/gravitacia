@@ -4,8 +4,10 @@ package cats;
 import Common.CommonEntity;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.Cascade;
+import owners.Owner;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
@@ -42,6 +44,10 @@ public class Cat extends CommonEntity {
     @ManyToMany
     private Set<Cat> friends = new HashSet<>();
     public Cat(){
+    }
+
+    public Cat(String name){
+        this.name = name;
     }
 
 

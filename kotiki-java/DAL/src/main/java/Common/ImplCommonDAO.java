@@ -94,7 +94,7 @@ public class ImplCommonDAO<E extends CommonEntity> implements CommonDAO<E>{
     }
 
     @Override
-    public CommonEntity merge(CommonEntity entity) {
+    public E merge(E entity) {
         Transaction transaction = null;
         E result = null;
         try (var session = getSessionFactory().openSession()) {
