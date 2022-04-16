@@ -3,7 +3,10 @@ package cats;
 
 import Common.CommonEntity;
 import com.sun.istack.NotNull;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.cfg.Configuration;
 import owners.Owner;
 
 import javax.persistence.*;
@@ -15,7 +18,7 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@Table(name = "cats")
+@Table(name = "cats", uniqueConstraints = {@UniqueConstraint(columnNames = {"Name", "DateOfBirth", "colour"})})
 
 public class Cat extends CommonEntity {
 
@@ -24,11 +27,11 @@ public class Cat extends CommonEntity {
     @Column(name="cat_id")
     private long id;
 
-    @Column(name = "Name")
+    @Column(name = "Name",unique = true)
     @NotNull
     private String name;
 
-    @Column(name = "DateOfBirth")
+    @Column(name = "DateOfBirth",unique = true)
     @NotNull
     private Calendar dateOfBirth;
 
@@ -37,17 +40,27 @@ public class Cat extends CommonEntity {
     @JoinColumn(name = "owner_id")
     private Cat owner;
 
-    @Column(name = "colour")
+    @Column(name = "colour",unique = true)
     @Enumerated(EnumType.STRING)
     private CatColour colour;
 
     @ManyToMany
     private Set<Cat> friends = new HashSet<>();
+
+    private ImplCatDAO implCatDAO;
+
     public Cat(){
+
     }
 
     public Cat(String name){
         this.name = name;
+    }
+
+    public Cat(String name, Calendar dateOfBirth, CatColour colour) {
+            this.name = name;
+            this.dateOfBirth = dateOfBirth;
+            this.colour = colour;
     }
 
 
@@ -63,6 +76,8 @@ public class Cat extends CommonEntity {
     public String getName() {
         return this.name;
     }
+
+
 
     @Override
     public void setName(String name) {

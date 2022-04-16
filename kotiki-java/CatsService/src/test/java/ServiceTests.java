@@ -7,11 +7,9 @@ import owners.ImplOwnerDAO;
 import owners.Owner;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import static cats.CatColour.white;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 
@@ -91,5 +89,19 @@ public class ServiceTests {
         assertEquals(expected, friends);
         assertEquals(expected1, cat1.getFriends());
         assertEquals(expected2, cat2.getFriends());
+    }
+
+    @Test
+    public void TwoSimilarCats() throws Exception{
+
+        Calendar calendar = new GregorianCalendar(2017, Calendar.JANUARY , 25);
+
+        Owner owner1 = new Owner("Max");
+        Owner owner2 = new Owner("Max");
+        Cat cat1 = new Cat("Purp", calendar, white);
+        Cat cat2 = new Cat("Purp", calendar, white);
+        owner1.addCats(cat1);
+        owner1.addCats(cat2);
+
     }
 }

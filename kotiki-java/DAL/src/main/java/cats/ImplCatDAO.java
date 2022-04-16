@@ -37,11 +37,11 @@ public class ImplCatDAO extends ImplCommonDAO<Cat> implements CatDAO {
 
             result = query.getSingleResult();
             transaction.commit();
-        } catch(Exception e) {
+        } catch(Exception exception) {
             if(transaction != null) {
                 transaction.rollback();
             }
-            throw e;
+            throw exception;
         }
         return result;
 
