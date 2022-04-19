@@ -44,19 +44,23 @@ public class ImplCommonDAO<E extends CommonEntity> implements CommonDAO<E>{
 
 
     @Override
-    public void delete(E entity) {
+    public void delete(Long id) {
         Transaction transaction = null;
-        try(var session = getSessionFactory().openSession()){
+        E result;
+        try(var session = getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(entity);
+            var criteria = session.createCriteria(persistClass);
+            criteria.add(Restrictions.idEq(id));
+            result = (E) criteria.uniqueResult();
+            session.delete(result);
             transaction.commit();
-        }catch (Exception exception){
+        }
+        catch (Exception exception){
             if (transaction != null){
                 transaction.rollback();
             }
             throw exception;
         }
-
     }
 
     @Override

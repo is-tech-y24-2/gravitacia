@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@Table(name = "owners", uniqueConstraints = {@UniqueConstraint(columnNames = {"Name"})})
-
+@Table(name = "owners")
 public class Owner extends CommonEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue
+    @Column(name = "owner_id", nullable = false)
     private Long id;
 
-    @Column(name = "Name", unique = true)
+    @Column(name = "Name")
     @NotNull
     private String name;
 
@@ -40,18 +40,9 @@ public class Owner extends CommonEntity {
         return cats;
     }
 
-    private ImplOwnerDAO implOwnerDAO;
 
     public Owner() {
 
-    }
-
-
-    protected SessionFactory getSessionFactory(){
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        return sessionFactory;
     }
 
 

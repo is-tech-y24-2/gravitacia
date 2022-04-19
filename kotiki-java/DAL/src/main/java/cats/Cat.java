@@ -6,6 +6,7 @@ import com.sun.istack.NotNull;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.cfg.Configuration;
 import owners.Owner;
 
@@ -17,37 +18,33 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@Table(name = "cats", uniqueConstraints = {@UniqueConstraint(columnNames = {"Name", "DateOfBirth", "colour"})})
-
+@Table(name = "cats")
 public class Cat extends CommonEntity {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="cat_id")
-    private long id;
+    private Long id;
 
-    @Column(name = "Name",unique = true)
+    @Column(name = "Name", unique = true)
     @NotNull
     private String name;
 
-    @Column(name = "DateOfBirth",unique = true)
+    @Column(name = "DateOfBirth")
     @NotNull
     private Calendar dateOfBirth;
 
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name = "owner_id")
-    private Cat owner;
+    private Owner owner;
 
-    @Column(name = "colour",unique = true)
+    @Column(name = "colour")
     @Enumerated(EnumType.STRING)
     private CatColour colour;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     private Set<Cat> friends = new HashSet<>();
-
-    private ImplCatDAO implCatDAO;
+    
 
     public Cat(){
 
@@ -87,6 +84,14 @@ public class Cat extends CommonEntity {
     @Override
     public void setBirth(Calendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override
