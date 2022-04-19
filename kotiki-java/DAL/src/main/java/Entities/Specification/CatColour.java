@@ -1,4 +1,4 @@
-package cats;
+package Entities.Specification;
 
 public enum CatColour {
     white,

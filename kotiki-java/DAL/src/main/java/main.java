@@ -1,17 +1,14 @@
-import cats.Cat;
-import cats.ImplCatDAO;
+import Entities.Cat;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import owners.ImplOwnerDAO;
-import owners.Owner;
+import Entities.Owner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static cats.CatColour.black;
-import static cats.CatColour.white;
+import static Entities.Specification.CatColour.black;
 
 public class Main {
     private static SessionFactory _sessionFactory;

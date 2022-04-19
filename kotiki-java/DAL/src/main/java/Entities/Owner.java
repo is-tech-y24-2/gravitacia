@@ -1,19 +1,12 @@
-package owners;
+package Entities;
 
 import Common.CommonEntity;
-import cats.Cat;
-import cats.ImplCatDAO;
 import com.sun.istack.NotNull;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)

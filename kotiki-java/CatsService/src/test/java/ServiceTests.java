@@ -1,15 +1,13 @@
-import cats.Cat;
-import cats.ImplCatDAO;
+import Entities.Cat;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-import owners.ImplOwnerDAO;
-import owners.Owner;
+import Entities.Owner;
 
 
 import java.util.*;
 
-import static cats.CatColour.white;
+import static Entities.Specification.CatColour.white;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 

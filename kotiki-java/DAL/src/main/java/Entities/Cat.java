@@ -1,20 +1,14 @@
-package cats;
+package Entities;
 
 
 import Common.CommonEntity;
+import Entities.Specification.CatColour;
 import com.sun.istack.NotNull;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.cfg.Configuration;
-import owners.Owner;
 
 import javax.persistence.*;
-import java.awt.*;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

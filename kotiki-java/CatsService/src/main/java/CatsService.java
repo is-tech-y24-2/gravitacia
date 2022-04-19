@@ -1,8 +1,6 @@
 import Common.CommonDAO;
-import cats.Cat;
-import cats.ImplCatDAO;
-import owners.ImplOwnerDAO;
-import owners.Owner;
+import Entities.Cat;
+import Entities.Owner;
 
 import java.util.List;
 import java.util.Set;
