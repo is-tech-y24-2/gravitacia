@@ -18,14 +18,14 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "cats")
+@Table(name = "cats", uniqueConstraints = @UniqueConstraint(columnNames = {"Name", "DateOfBirth", "owner_id"}))
 public class Cat extends CommonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="cat_id")
     private Long id;
 
-    @Column(name = "Name", unique = true)
+    @Column(name = "Name")
     @NotNull
     private String name;
 

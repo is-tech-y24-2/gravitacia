@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@Table(name = "owners")
+@Table(name = "owners", uniqueConstraints = @UniqueConstraint(columnNames = {"Name", "DateOfBirth"}))
 public class Owner extends CommonEntity {
     @Id
     @GeneratedValue

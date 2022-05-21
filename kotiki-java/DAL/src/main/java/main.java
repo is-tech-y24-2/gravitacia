@@ -13,7 +13,7 @@ import java.util.List;
 import static cats.CatColour.black;
 import static cats.CatColour.white;
 
-public class Main {
+class Main {
     private static SessionFactory _sessionFactory;
     public static void main(String[] args) throws Exception {
 
