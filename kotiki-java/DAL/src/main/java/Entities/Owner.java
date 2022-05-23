@@ -1,6 +1,5 @@
 package Entities;
 
-import Common.CommonEntity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -11,7 +10,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 @Table(name = "owners")
-public class Owner extends CommonEntity {
+public class Owner {
     @Id
     @GeneratedValue
     @Column(name = "owner_id", nullable = false)
@@ -33,7 +32,9 @@ public class Owner extends CommonEntity {
         return cats;
     }
 
-
+    public void setCats (List<Cat> cats){
+        this.cats = cats;
+    }
     public Owner() {
 
     }
@@ -42,35 +43,29 @@ public class Owner extends CommonEntity {
     public Owner(String name){
         this.name = name;
     }
-    @Override
     public Long getId() {
         return this.id;
     }
 
-    @Override
     public void setId(Long Id) {
         id = Id;
 
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
 
     }
 
-    @Override
     public void setBirth(Calendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
 
     }
 
-    @Override
     public Calendar getBirth() {
         return this.dateOfBirth;
     }
@@ -81,6 +76,11 @@ public class Owner extends CommonEntity {
             throw new Exception("Warning! This cat is already exist");
         }
         else{
+            cats.add(cat);
+        }
+    }
+    public void addCat(Cat cat) {
+        if(!cats.contains(cat)) {
             cats.add(cat);
         }
     }

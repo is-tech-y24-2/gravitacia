@@ -1,7 +1,6 @@
 package Entities;
 
 
-import Common.CommonEntity;
 import Entities.Specification.CatColour;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.Cascade;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "cats")
-public class Cat extends CommonEntity {
+public class Cat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="cat_id")
@@ -63,19 +62,17 @@ public class Cat extends CommonEntity {
         this.id = id;
     }
 
-    @Override
+
     public String getName() {
         return this.name;
     }
 
 
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
     public void setBirth(Calendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
@@ -88,7 +85,6 @@ public class Cat extends CommonEntity {
         this.owner = owner;
     }
 
-    @Override
     public Calendar getBirth() {
         return this.dateOfBirth;
     }
@@ -101,4 +97,13 @@ public class Cat extends CommonEntity {
         cat.getFriends().add(this);
         friends.add(cat);
     }
+
+    public CatColour getColour(){
+        return this.colour;
+    }
+
+    public void setColour(CatColour catColour){
+        this.colour = colour;
+    }
+
 }

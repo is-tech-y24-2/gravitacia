@@ -19,8 +19,8 @@
 
 
         <!-- Annotated entity classes --><!-- Annotated entity classes -->
-        <mapping class="cats.Cat"/>
-        <mapping class="owners.Owner"/>
+        <mapping class="Entities.Cat"/>
+        <mapping class="Entities.Owner"/>
 
     </session-factory>
 </hibernate-configuration>
