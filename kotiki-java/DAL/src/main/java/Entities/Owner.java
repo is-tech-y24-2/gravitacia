@@ -6,15 +6,14 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 @Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-@Table(name = "owners")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Table(name = "owner")
 public class Owner {
     @Id
     @GeneratedValue
-    @Column(name = "owner_id", nullable = false)
-    private Long id;
+    @Column(name="CAT_ID")
+    private long id;
 
     @Column(name = "Name")
     @NotNull
@@ -32,56 +31,39 @@ public class Owner {
         return cats;
     }
 
-    public void setCats (List<Cat> cats){
-        this.cats = cats;
-    }
     public Owner() {
-
     }
 
-
-    public Owner(String name){
-        this.name = name;
-    }
-    public Long getId() {
-        return this.id;
+    public long getId() {
+        return id;
     }
 
-    public void setId(Long Id) {
-        id = Id;
-
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
-
     }
 
-    public void setBirth(Calendar dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-
+    public Calendar getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public Calendar getBirth() {
-        return this.dateOfBirth;
+    public void setDateOfBirth(Calendar _dateOfBirth) {
+        this.dateOfBirth = _dateOfBirth;
     }
 
-    public void addCats(Cat cat) throws Exception {
-
-        if (cats.contains(cat)){
-            throw new Exception("Warning! This cat is already exist");
-        }
-        else{
-            cats.add(cat);
-        }
-    }
     public void addCat(Cat cat) {
         if(!cats.contains(cat)) {
             cats.add(cat);
         }
+    }
+    public void setCats(List<Cat> _cats) {
+        this.cats = _cats;
     }
 }

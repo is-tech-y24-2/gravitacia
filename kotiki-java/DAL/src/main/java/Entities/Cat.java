@@ -1,6 +1,5 @@
 package Entities;
 
-
 import Entities.Specification.CatColour;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.Cascade;
@@ -11,14 +10,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "cats")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Table(name= "cat")
 public class Cat {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="cat_id")
-    private Long id;
+    @GeneratedValue
+    @Column(name="CAT_ID")
+    private long id;
 
-    @Column(name = "Name", unique = true)
+    @Column(name = "Name")
     @NotNull
     private String name;
 
@@ -31,28 +31,26 @@ public class Cat {
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @Column(name = "colour")
+    @Column(name = "Breed")
     @Enumerated(EnumType.STRING)
-    private CatColour colour;
+    private CatColour breed;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany
     private Set<Cat> friends = new HashSet<>();
-    
-
-    public Cat(){
+    public Cat() {
 
     }
-
-    public Cat(String name){
+    public Cat(String name) {
+        this();
         this.name = name;
     }
-
-    public Cat(String name, Calendar dateOfBirth, CatColour colour) {
-            this.name = name;
-            this.dateOfBirth = dateOfBirth;
-            this.colour = colour;
+    public Cat(String name, Calendar dateOfBirth,Owner owner, CatColour breed) {
+        this();
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.owner = owner;
+        this.breed = breed;
     }
-
 
     public Long getId() {
         return id;
@@ -62,48 +60,50 @@ public class Cat {
         this.id = id;
     }
 
-
     public String getName() {
-        return this.name;
+        return name;
     }
-
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setBirth(Calendar dateOfBirth) {
+    public Calendar getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Calendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+        this.owner.addCat(this);
     }
 
     public Owner getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public CatColour getBreed() {
+        return breed;
     }
 
-    public Calendar getBirth() {
-        return this.dateOfBirth;
+    public void setBreed(CatColour breed) {
+        this.breed = breed;
     }
 
-    public Set<Cat> getFriends(){
-        return this.friends;
+    public Set<Cat> getFriends() {
+        return friends;
     }
 
-    public void setFriends(Cat cat){
-        cat.getFriends().add(this);
-        friends.add(cat);
+    public void setFriends(Cat friend) {
+        friend.getFriends().add(this);
+        friends.add(friend);
     }
 
-    public CatColour getColour(){
-        return this.colour;
+    @Override
+    public String toString() {
+        return name;
     }
-
-    public void setColour(CatColour catColour){
-        this.colour = colour;
-    }
-
 }
