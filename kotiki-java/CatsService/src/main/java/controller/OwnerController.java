@@ -15,8 +15,8 @@ import utils.OwnerDTOMapping;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
-@RequestMapping("/kotiki/owner")
+@RestController
+@RequestMapping("/owner")
 @ComponentScan("utils")
 public class OwnerController {
     @Autowired

@@ -17,9 +17,9 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @ComponentScan("utils")
-@RequestMapping("/kotiki/cats")
+@RequestMapping("/cats")
 public class CatController {
     @Autowired
     private CatService catsService;
